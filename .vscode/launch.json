@@ -5,7 +5,14 @@
             "name": "Listen (paw)",
             "type": "php",
             "request": "launch",
-            "port": 9003
+            "port": 9003,
+            "runtimeArgs": [
+                "-dxdebug.start_with_request=yes"
+            ],
+            "env": {
+                "XDEBUG_MODE": "debug",
+                "XDEBUG_CONFIG": "client_port=${port}"
+            }
         },
         {
             "name": "Launch (paw)",
