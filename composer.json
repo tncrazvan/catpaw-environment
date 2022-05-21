@@ -1,0 +1,55 @@
+{
+  "name": "catpaw/environment",
+  "type": "library",
+  "description": "A catpaw library for reading environment variables",
+  "homepage": "https://github.com/tncrazvan/catpaw-environment",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "cli",
+    "server",
+    "http",
+    "websocket",
+    "starter",
+    "template",
+    "catpaw"
+  ],
+  "scripts": {
+    "load": "@composer dump-autoload -o",
+    "script": "@php ./vendor/catpaw/core/scripts/start.php",
+    "fix": [
+      "@php ./vendor/bin/php-cs-fixer fix src",
+      "@php ./vendor/bin/php-cs-fixer fix tests"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Razvan Tanase",
+      "email": "tangent.jotey@gmail.com",
+      "homepage": "https://github.com/tncrazvan",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "CatPaw\\Environment": "src/lib/"
+    }
+  },
+  "require": {
+    "php": "^8.0",
+    "catpaw/core": "^1.2",
+    "amphp/amp": "^2.6",
+    "amphp/file": "^2.0"
+  },
+  "autoload-dev": {
+    "Tests\\": "tests/"
+  },
+  "require-dev":{
+    "phpunit/phpunit": "^9.5",
+    "friendsofphp/php-cs-fixer": "^3.8"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "process-timeout": 0
+  }
+}
