@@ -8,7 +8,6 @@ use Amp\File\File;
 
 use function Amp\File\openFile;
 use Amp\Promise;
-use CatPaw\Attributes\Entry;
 
 use CatPaw\Attributes\Service;
 use CatPaw\Environment\Exceptions\EnvironmentNotFoundException;
@@ -18,25 +17,24 @@ class EnvironmentService {
     /** @var array<string,string|null> */
     private array $variables = [];
 
-    private static string $fileName = '';
+    private string $fileName = '';
 
-    public static function setFileName(string $fileName):void {
-        self::$fileName = $fileName;
+    public function setFileName(string $fileName):void {
+        $this->fileName = $fileName;
     }
 
     /**
      * 
      * @return Promise<void>
      */
-    #[Entry] public function sync():Promise {
+    public function sync():Promise {
         return call(function() {
-            $fileName = self::$fileName;
-            if (!yield exists($fileName)) {
-                throw new EnvironmentNotFoundException("Environment file \"$fileName\" not found.");
+            if (!yield exists($this->fileName)) {
+                throw new EnvironmentNotFoundException("Environment file \"$this->fileName\" not found.");
             }
 
             /** @var File $file */
-            $file = yield openFile($fileName, 'r');
+            $file = yield openFile($this->fileName, 'r');
 
             $contents = '';
 
