@@ -25,7 +25,7 @@ class Environment implements AttributeInterface {
     #[Entry] public function setup(
         EnvironmentService $environmentService
     ) {
-		$this->environmentService = $environmentService;
+        $this->environmentService = $environmentService;
 //        return call(function() use($environmentService) {
 //            $this->environmentService = $environmentService;
 //            yield $this->environmentService->sync(__DIR__."/.env");
@@ -35,7 +35,7 @@ class Environment implements AttributeInterface {
     public function onParameter(ReflectionParameter $reflection, mixed &$value, mixed $http): Promise {
         return call(function() use ($reflection, &$value, $http) {
             $variables = $this->environmentService->getVariables();
-            $value = $variables[$this->variableName] ?? false;
+            $value     = $variables[$this->variableName] ?? false;
         });
     }
 }
