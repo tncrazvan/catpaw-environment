@@ -4,7 +4,6 @@ namespace Tests;
 use Amp\Loop;
 use CatPaw\Environment\Attributes\Environment;
 use CatPaw\Environment\Services\EnvironmentService;
-use CatPaw\Environment\Services\EnvironmentService as ServicesEnvironmentService;
 use CatPaw\Utilities\Container;
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +22,7 @@ class EnvironmentServiceTest extends TestCase {
 
     public function testAttribute() {
         Loop::run(function() {
-            ServicesEnvironmentService::setFileName(__DIR__."/.env");
+            yield Container::create(EnvironmentService::class, __DIR__."/.env");
             yield Container::run(function(
                 #[Environment("HOSTNAME")] string $hostname,
                 #[Environment("PORT")] string $port,
